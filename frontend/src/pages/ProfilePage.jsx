@@ -38,26 +38,32 @@ const ProfilePage = () => {
       });
   }, [navigate]);
 
-  const fetchGameTitles = async (reviews) => {
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/');
+    };
+
+    const fetchGameTitles = async (reviews) => {
     const titles = {};
     for (const review of reviews) {
-      const gameId = review.game;
-      if (!titles[gameId]) {
+        const gameId = review.game;
+        if (!titles[gameId]) {
         try {
-          const res = await fetch(`http://127.0.0.1:8000/games/${gameId}/`);
-          if (res.ok) {
+            const res = await fetch(`http://127.0.0.1:8000/games/${gameId}/`);
+            if (res.ok) {
             const gameData = await res.json();
-            titles[gameId] = gameData.title;
-          } else {
+            titles[gameId] = gameData.name;  // <-- ici on prend 'name' et non 'title'
+            } else {
             titles[gameId] = `Jeu #${gameId}`;
-          }
+            }
         } catch (err) {
-          titles[gameId] = `Jeu #${gameId}`;
+            titles[gameId] = `Jeu #${gameId}`;
         }
-      }
+        }
     }
     setGameTitles(titles);
-  };
+    };
+
 
   if (loading) {
     return (
@@ -79,12 +85,20 @@ const ProfilePage = () => {
     <div className="bg-gray-100 dark:bg-gray-900 min-h-screen px-4 sm:px-6 md:px-12 xl:px-20 py-16 text-gray-900 dark:text-gray-100">
       <div className="max-w-4xl mx-auto">
         {/* Profil utilisateur */}
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow p-8 mb-10">
-          <h1 className="text-4xl font-bold mb-2">{user.username}</h1>
-          <p className="text-lg text-gray-500 dark:text-gray-400 mb-2">{user.email}</p>
-          <p className="text-md text-gray-600 dark:text-gray-400">
-            Nombre total d'avis : <span className="font-semibold">{user.reviews?.length || 0}</span>
-          </p>
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow p-8 mb-10 flex flex-col sm:flex-row sm:items-center sm:justify-between">
+            <div>
+                <h1 className="text-4xl font-bold mb-2">{user.username}</h1>
+                <p className="text-lg text-gray-500 dark:text-gray-400 mb-2">{user.email}</p>
+                <p className="text-md text-gray-600 dark:text-gray-400">
+                Nombre total d'avis : <span className="font-semibold">{user.reviews?.length || 0}</span>
+                </p>
+            </div>
+            <button
+                onClick={handleLogout}
+                className="mt-4 sm:mt-0 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition"
+            >
+                Déconnexion
+            </button>
         </div>
 
         {/* Avis */}

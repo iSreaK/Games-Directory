@@ -6,6 +6,8 @@ import GamesPage from './pages/GamesPage';
 import GamesDetail from './pages/GamesDetail';
 import ProfilePage from './pages/ProfilePage';
 import RedirectProfile from './components/RedirectProfile';
+import QuizzDetailsPage from './pages/QuizzDetailsPage';
+import QuizzPage from './pages/QuizzPage';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
             <Route path="/games/:id" element={<GamesDetail />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/profile/:id" element={<ProfilePage />} />
+            <Route path="/quizz" element={<QuizzPage />} />
+            <Route path="/quizz/:id" element={<QuizzDetailsPage />} />  
           </Routes>
         </div>
       </Router>

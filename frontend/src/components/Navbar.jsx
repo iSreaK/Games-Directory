@@ -6,7 +6,7 @@ const Navbar = () => {
   const token = localStorage.getItem('token');
 
   const handleAuthClick = () => {
-    navigate(token ? '/profile' : '/auth');
+    navigate(token ? '/profile' : '/login');
   };
 
   return (
@@ -19,16 +19,16 @@ const Navbar = () => {
         onClick={() => navigate('/')}
         className="text-2xl font-bold cursor-pointer text-gray-800 dark:text-gray-100"
       >
-        🎮 GameHub
+        🍚 Riz-view
       </div>
 
       {/* Navigation */}
       <div className="flex items-center gap-6">
         <button
-          onClick={() => navigate('/games')}
+          onClick={() => navigate('/quizz')}
           className="text-gray-800 dark:text-gray-100 hover:underline text-lg"
         >
-          Games
+          Quizz
         </button>
 
         <button

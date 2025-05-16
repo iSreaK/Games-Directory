@@ -153,7 +153,7 @@ const GameDetails = () => {
               {game.reviews?.length > 0 ? (
                 game.reviews.map((c, idx) => (
                   <div key={idx} className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow">
-                    <p className="font-medium">{c.user || 'Anonyme'}</p>
+                    <p className="font-medium">{c.user?.username || 'Anonyme'}</p>
                     <p className="text-sm text-gray-600 dark:text-gray-400">{c.comment || c.text}</p>
                     <div className="text-yellow-400">Note : {c.rating}/5</div>
                   </div>

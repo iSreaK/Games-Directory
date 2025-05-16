@@ -1,0 +1,278 @@
+[
+  {
+    "id": "1",
+    "id_game": "GTA 5",
+    "questions_id": [
+      {
+        "titre": "Quel est le nom du personnage qui vit dans une maison à Vinewood Hills ?",
+        "choix_1": "Franklin",
+        "choix_2": "Trevor",
+        "choix_3": "Michael",
+        "choix_4": "Lamar",
+        "right_choice": "Michael"
+      },
+      {
+        "titre": "Dans quelle ville fictive se déroule GTA 5 ?",
+        "choix_1": "Liberty City",
+        "choix_2": "Vice City",
+        "choix_3": "Los Santos",
+        "choix_4": "San Fierro",
+        "right_choice": "Los Santos"
+      },
+      {
+        "titre": "Quel personnage est pilote d’hélicoptère ?",
+        "choix_1": "Trevor",
+        "choix_2": "Franklin",
+        "choix_3": "Lester",
+        "choix_4": "Ron",
+        "right_choice": "Trevor"
+      },
+      {
+        "titre": "Quel est le nom du réseau social fictif dans GTA 5 ?",
+        "choix_1": "Lifeinvader",
+        "choix_2": "Snapmatic",
+        "choix_3": "FriendZone",
+        "choix_4": "Chirp",
+        "right_choice": "Lifeinvader"
+      },
+      {
+        "titre": "Quel est le métier initial de Michael ?",
+        "choix_1": "Policier",
+        "choix_2": "Acteur",
+        "choix_3": "Braqueur à la retraite",
+        "choix_4": "Politicien",
+        "right_choice": "Braqueur à la retraite"
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "id_game": "The Witcher 3",
+    "questions_id": [
+      {
+        "titre": "Comment s'appelle le cheval de Geralt ?",
+        "choix_1": "Roach",
+        "choix_2": "Blaze",
+        "choix_3": "Shadow",
+        "choix_4": "Storm",
+        "right_choice": "Roach"
+      },
+      {
+        "titre": "Quel est le nom de la fille adoptive de Geralt ?",
+        "choix_1": "Triss",
+        "choix_2": "Yennefer",
+        "choix_3": "Ciri",
+        "choix_4": "Keira",
+        "right_choice": "Ciri"
+      },
+      {
+        "titre": "Quel est le nom du continent dans lequel se déroule l’histoire ?",
+        "choix_1": "Skellige",
+        "choix_2": "Temeria",
+        "choix_3": "Le Continent",
+        "choix_4": "Nilfgaard",
+        "right_choice": "Le Continent"
+      },
+      {
+        "titre": "Quelle est la principale activité de Geralt ?",
+        "choix_1": "Guerrier",
+        "choix_2": "Sorcière",
+        "choix_3": "Sorcier",
+        "choix_4": "Sorceleur",
+        "right_choice": "Sorceleur"
+      },
+      {
+        "titre": "Quelle créature est une cible fréquente des sorceleurs ?",
+        "choix_1": "Les loups",
+        "choix_2": "Les spectres",
+        "choix_3": "Les harpies",
+        "choix_4": "Les monstres",
+        "right_choice": "Les monstres"
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "id_game": "Portal 2",
+    "questions_id": [
+      {
+        "titre": "Quel est le nom de l’intelligence artificielle principale dans Portal 2 ?",
+        "choix_1": "Wheatley",
+        "choix_2": "GLaDOS",
+        "choix_3": "Atlas",
+        "choix_4": "P-body",
+        "right_choice": "GLaDOS"
+      },
+      {
+        "titre": "Quel outil est utilisé pour résoudre les énigmes ?",
+        "choix_1": "Clé à molette",
+        "choix_2": "Canon à portails",
+        "choix_3": "Rayon gravitationnel",
+        "choix_4": "Télécommande",
+        "right_choice": "Canon à portails"
+      },
+      {
+        "titre": "Quel personnage devient temporairement le nouveau contrôleur du centre ?",
+        "choix_1": "Chell",
+        "choix_2": "GLaDOS",
+        "choix_3": "Wheatley",
+        "choix_4": "Cave Johnson",
+        "right_choice": "Wheatley"
+      },
+      {
+        "titre": "Quel est le nom de la protagoniste silencieuse ?",
+        "choix_1": "Cave",
+        "choix_2": "Caroline",
+        "choix_3": "Alyx",
+        "choix_4": "Chell",
+        "right_choice": "Chell"
+      },
+      {
+        "titre": "Quel élément chimique est souvent mentionné dans les laboratoires ?",
+        "choix_1": "Mercure",
+        "choix_2": "Gallium",
+        "choix_3": "Limonite",
+        "choix_4": "Gels de propulsion",
+        "right_choice": "Gels de propulsion"
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "id_game": "CS GO",
+    "questions_id": [
+      {
+        "titre": "Quel est l’objectif des terroristes dans CS GO ?",
+        "choix_1": "Sauver des otages",
+        "choix_2": "Planter la bombe",
+        "choix_3": "Capturer un drapeau",
+        "choix_4": "Survivre 10 minutes",
+        "right_choice": "Planter la bombe"
+      },
+      {
+        "titre": "Quel est l’arme la plus emblématique de CS GO ?",
+        "choix_1": "M4A4",
+        "choix_2": "AWP",
+        "choix_3": "MP9",
+        "choix_4": "Nova",
+        "right_choice": "AWP"
+      },
+      {
+        "titre": "Combien de rounds faut-il gagner pour remporter une partie compétitive ?",
+        "choix_1": "13",
+        "choix_2": "16",
+        "choix_3": "12",
+        "choix_4": "10",
+        "right_choice": "16"
+      },
+      {
+        "titre": "Quel est le nom de la carte la plus emblématique ?",
+        "choix_1": "Mirage",
+        "choix_2": "Dust II",
+        "choix_3": "Inferno",
+        "choix_4": "Nuke",
+        "right_choice": "Dust II"
+      },
+      {
+        "titre": "Quelle équipe doit désamorcer la bombe ?",
+        "choix_1": "Terroristes",
+        "choix_2": "CT (contre-terroristes)",
+        "choix_3": "Neutres",
+        "choix_4": "Mercenaires",
+        "right_choice": "CT (contre-terroristes)"
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "id_game": "Tomb Raider 2013",
+    "questions_id": [
+      {
+        "titre": "Quel est le nom de l’héroïne ?",
+        "choix_1": "Chloe",
+        "choix_2": "Lara Croft",
+        "choix_3": "Elena Fisher",
+        "choix_4": "Ada Wong",
+        "right_choice": "Lara Croft"
+      },
+      {
+        "titre": "Quel est le cadre principal du jeu ?",
+        "choix_1": "Jungle amazonienne",
+        "choix_2": "Île mystérieuse",
+        "choix_3": "Montagnes de l’Himalaya",
+        "choix_4": "Désert égyptien",
+        "right_choice": "Île mystérieuse"
+      },
+      {
+        "titre": "Quelle est l’arme de départ de Lara ?",
+        "choix_1": "Arc",
+        "choix_2": "Pistolet",
+        "choix_3": "Lance",
+        "choix_4": "Hache",
+        "right_choice": "Arc"
+      },
+      {
+        "titre": "Quel est le but de Lara dans ce jeu ?",
+        "choix_1": "Sauver le monde",
+        "choix_2": "Retrouver un artefact",
+        "choix_3": "Survivre et sauver ses amis",
+        "choix_4": "Devenir célèbre",
+        "right_choice": "Survivre et sauver ses amis"
+      },
+      {
+        "titre": "Quel est l'élément mystique principal sur l'île ?",
+        "choix_1": "Le fantôme du samouraï",
+        "choix_2": "La tempête contrôlée",
+        "choix_3": "Les dinosaures",
+        "choix_4": "Les vampires",
+        "right_choice": "La tempête contrôlée"
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "id_game": "Portal 1",
+    "questions_id": [
+      {
+        "titre": "Quelle entreprise fictive est au cœur de l’histoire ?",
+        "choix_1": "Aperture Science",
+        "choix_2": "Black Mesa",
+        "choix_3": "Vault-Tec",
+        "choix_4": "OmniCorp",
+        "right_choice": "Aperture Science"
+      },
+      {
+        "titre": "Quel est le nom de l’IA qui surveille les tests ?",
+        "choix_1": "Wheatley",
+        "choix_2": "GLaDOS",
+        "choix_3": "Atlas",
+        "choix_4": "Cortana",
+        "right_choice": "GLaDOS"
+      },
+      {
+        "titre": "Quelle récompense est promise à la fin des tests ?",
+        "choix_1": "Un diplôme",
+        "choix_2": "Une arme",
+        "choix_3": "Du gâteau",
+        "choix_4": "La liberté",
+        "right_choice": "Du gâteau"
+      },
+      {
+        "titre": "Quel objet devient emblématique dans Portal 1 ?",
+        "choix_1": "La tourelle chantante",
+        "choix_2": "Le cube de voyage",
+        "choix_3": "Le Cube de compagnie",
+        "choix_4": "La boîte à outils",
+        "right_choice": "Le Cube de compagnie"
+      },
+      {
+        "titre": "Quelle est la dernière action avant la destruction de GLaDOS ?",
+        "choix_1": "Lancer des portails",
+        "choix_2": "Échapper au centre",
+        "choix_3": "Brûler les cœurs de GLaDOS",
+        "choix_4": "Détruire la salle de test",
+        "right_choice": "Brûler les cœurs de GLaDOS"
+      }
+    ]
+  }
+]

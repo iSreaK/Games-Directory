@@ -94,7 +94,7 @@ const GamesPage = () => {
               <div
                 key={game.id}
                 onClick={() => navigate(`/games/${game.id}`)}
-                className="cursor-pointer bg-white dark:bg-gray-800 rounded-2xl shadow hover:shadow-lg transition overflow-hidden"
+                className="cursor-pointer bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-indigo-500 transition overflow-hidden"
               >
                 <img
                   src={game.background_image}
