@@ -3,7 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 
 from rest_framework import status
-from .serializers import UserSerializer
+from .serializers import UserSerializer, UserDetailSerializer
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
@@ -41,8 +41,25 @@ def signup(request):
         return Response({'token': token.key}, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+# @api_view(['GET'])
+# @authentication_classes([SessionAuthentication, TokenAuthentication])
+# @permission_classes([IsAuthenticated])
+# def test_token(request):
+#     return Response("passed for {}".format(request.user.username), status=status.HTTP_200_OK)
+
 @api_view(['GET'])
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
-def test_token(request):
-    return Response("passed for {}".format(request.user.username), status=status.HTTP_200_OK)
+def me(request):
+    serializer = UserSerializer(request.user)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def get_user(request, pk):
+    try:
+        user = User.objects.get(pk=pk)
+    except User.DoesNotExist:
+        return Response({'error': 'User does not exist'}, status=status.HTTP_404_NOT_FOUND)
+
+    serializer = UserDetailSerializer(instance=user)
+    return Response(serializer.data, status=status.HTTP_200_OK)
