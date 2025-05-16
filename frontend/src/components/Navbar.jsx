@@ -3,6 +3,15 @@ import { useNavigate } from 'react-router';
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const token = localStorage.getItem('token');
+
+  const handleAuthClick = () => {
+    if (token) {
+      navigate('/profile');
+    } else {
+      navigate('/auth');
+    }
+  };
 
   return (
     <nav
@@ -28,9 +37,9 @@ const Navbar = () => {
         </button>
 
         <button
-          onClick={() => navigate('/login')}
+          onClick={handleAuthClick}
           className="flex items-center gap-1 text-gray-800 dark:text-gray-100 hover:text-indigo-500 transition"
-          title="Connexion / Inscription"
+          title={token ? 'Profil' : 'Connexion / Inscription'}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

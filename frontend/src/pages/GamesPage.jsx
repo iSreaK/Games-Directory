@@ -31,7 +31,7 @@ const GamesPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/review/allgames/')
+    fetch('http://127.0.0.1:8000/games/')
       .then(res => res.json())
       .then(data => {
         setGames(data);
@@ -51,76 +51,80 @@ const GamesPage = () => {
   });
 
   return (
-    <div className="bg-gray-100 dark:bg-gray-900 min-h-screen px-4 sm:px-6 md:px-12 xl:px-20 py-8 text-gray-900 dark:text-gray-100">
-      <h1 className="text-4xl font-bold text-center mb-8">Jeux Vidéo</h1>
-
-      {/* Barre de filtres */}
-      <div className="flex flex-col md:flex-row justify-between items-center mb-6">
-        {/* Texte à gauche */}
-        <div className="w-full md:w-auto mb-2 md:mb-0">
-          <span className="text-lg font-medium">Trier par :</span>
+      <div className="bg-gray-100 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-gray-100">
+        <div className="w-screen h-24 bg-gradient-to-r from-[#150a29] via-[#1a0f2f] to-[#0a122d] flex items-center justify-center text-white">
+          <p className="text-xl font-medium">Jeux</p>
         </div>
 
-        {/* Filtres à droite */}
-        <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
-          {/* Sélecteur de genres */}
-          <select
-            value={selectedGenre}
-            onChange={(e) => setSelectedGenre(e.target.value)}
-            className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded px-4 py-2"
-          >
-            {allGenres.map((genre, idx) => (
-              <option key={idx} value={genre}>{genre}</option>
-            ))}
-          </select>
+        <div className="px-4 sm:px-6 md:px-12 xl:px-20 py-8">
+          {/* Barre de filtres */}
+          <div className="flex flex-col md:flex-row justify-between items-center mb-6">
+            {/* Texte à gauche */}
+            <div className="w-full md:w-auto mb-2 md:mb-0">
+              <span className="text-lg font-medium">Trier par :</span>
+            </div>
 
-          {/* Barre de recherche */}
-          <input
-            type="text"
-            placeholder="Rechercher un jeu..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded px-4 py-2 w-full sm:w-64"
-          />
-        </div>
-      </div>
-
-      {/* Cartes de jeux */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
-        {filteredGames.map((game) => (
-          <div
-            key={game.id}
-            onClick={() => navigate(`/games/${game.id}`)}
-            className="cursor-pointer bg-white dark:bg-gray-800 rounded-2xl shadow hover:shadow-lg transition overflow-hidden"
-          >
-            <img
-              src={game.background_image}
-              alt={game.name}
-              className="w-full h-48 object-cover"
-            />
-            <div className="p-4">
-              <h2 className="text-xl font-semibold mb-2">{game.name}</h2>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                {game.genres.join(', ')}
-              </p>
-              <div className="flex flex-wrap items-center gap-2">
-                {game.platforms.map((platform, idx) => (
-                  platformIcons[platform] ? (
-                    <img
-                      key={idx}
-                      src={platformIcons[platform]}
-                      alt={platform}
-                      title={platform}
-                      className="w-5 h-5 filter invert"
-                    />
-                  ) : (
-                    <span key={idx} className="text-sm">🎲</span>
-                  )
+            {/* Filtres à droite */}
+            <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
+              {/* Sélecteur de genres */}
+              <select
+                value={selectedGenre}
+                onChange={(e) => setSelectedGenre(e.target.value)}
+                className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded px-4 py-2"
+              >
+                {allGenres.map((genre, idx) => (
+                  <option key={idx} value={genre}>{genre}</option>
                 ))}
-              </div>
+              </select>
+
+              {/* Barre de recherche */}
+              <input
+                type="text"
+                placeholder="Rechercher un jeu..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded px-4 py-2 w-full sm:w-64"
+              />
             </div>
           </div>
-        ))}
+
+          {/* Cartes de jeux */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredGames.map((game) => (
+              <div
+                key={game.id}
+                onClick={() => navigate(`/games/${game.id}`)}
+                className="cursor-pointer bg-white dark:bg-gray-800 rounded-2xl shadow hover:shadow-lg transition overflow-hidden"
+              >
+                <img
+                  src={game.background_image}
+                  alt={game.name}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-4">
+                  <h2 className="text-xl font-semibold mb-2">{game.name}</h2>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                    {game.genres.join(', ')}
+                  </p>
+                  <div className="flex flex-wrap items-center gap-2">
+                    {game.platforms.map((platform, idx) => (
+                      platformIcons[platform] ? (
+                        <img
+                          key={idx}
+                          src={platformIcons[platform]}
+                          alt={platform}
+                          title={platform}
+                          className="w-5 h-5 filter invert"
+                        />
+                      ) : (
+                        <span key={idx} className="text-sm">🎲</span>
+                      )
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
       </div>
     </div>
   );
