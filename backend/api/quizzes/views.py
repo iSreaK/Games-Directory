@@ -55,7 +55,6 @@ class SubmitQuizView(APIView):
                 question_id = item['question_id']
                 choice_id = item['choice_id']
 
-                # Crée ou met à jour la réponse
                 user_answer, _ = UserAnswer.objects.update_or_create(
                     user=user,
                     question_id=question_id,

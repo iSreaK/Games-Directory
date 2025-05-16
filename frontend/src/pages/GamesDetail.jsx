@@ -29,6 +29,25 @@ const GameDetails = () => {
   const [rating, setRating] = useState(0);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      fetch('http://127.0.0.1:8000/users/me/', {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      })
+        .then(res => {
+          if (!res.ok) throw new Error('Erreur récupération utilisateur');
+          return res.json();
+        })
+        .then(data => setUser(data))
+        .catch(() => setUser(null));
+    }
+  }, []);
 
   useEffect(() => {
     fetch(`http://127.0.0.1:8000/games/${id}/`)
@@ -58,7 +77,7 @@ const GameDetails = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Token ${token}`, // Important : Token, pas Bearer
+          Authorization: `Token ${token}`,
         },
         body: JSON.stringify({
           game: Number(id),
@@ -74,10 +93,9 @@ const GameDetails = () => {
 
       const newReview = await res.json();
 
-      // Ajouter la nouvelle review localement (game.reviews)
       setGame((prevGame) => ({
         ...prevGame,
-        comments: [newReview, ...(prevGame.reviews || [])],
+        reviews: [newReview, ...(prevGame.reviews || [])],
       }));
 
       setComment('');
@@ -97,11 +115,12 @@ const GameDetails = () => {
       ? (game.reviews.reduce((sum, c) => sum + c.rating, 0) / game.reviews.length).toFixed(1)
       : null;
 
+  const userHasReviewed = user && game.reviews && game.reviews.some(r => r.user?.id === user.id);
+
   return (
     <>
       <Navbar />
       <div className="bg-gray-100 dark:bg-gray-900 min-h-screen px-6 py-8 text-gray-900 dark:text-gray-100">
-        {/* Titre + image */}
         <div className="max-w-6xl mx-auto">
           <h1 className="text-4xl font-bold mb-4">{game.name}</h1>
           <img
@@ -111,7 +130,7 @@ const GameDetails = () => {
           />
 
           {/* Infos principales */}
-          <div className="mb-6">
+          <div className="mb-6 flex flex-col gap-4">
             <p className="text-lg mb-2 text-gray-700 dark:text-gray-300">
               Genres : {game.genres.join(', ')}
             </p>
@@ -128,6 +147,37 @@ const GameDetails = () => {
                 ) : (
                   <span key={idx}>🎮</span>
                 )
+              )}
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+              {game.release_date && (
+                <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow flex items-start gap-4">
+                  <div className="text-3xl">📅</div>
+                  <div>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Date de sortie</p>
+                    <p className="text-lg font-semibold">{new Date(game.release_date).toLocaleDateString()}</p>
+                  </div>
+                </div>
+              )}
+
+              {game.developers && game.developers.length > 0 && (
+                <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow flex items-start gap-4">
+                  <div className="text-3xl">👨‍💻</div>
+                  <div>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Développeur(s)</p>
+                    <p className="text-lg font-semibold">{game.developers.join(', ')}</p>
+                  </div>
+                </div>
+              )}
+
+              {game.publishers && game.publishers.length > 0 && (
+                <div className="bg-white dark:bg-gray-800 p-4 rounded-2xl shadow flex items-start gap-4">
+                  <div className="text-3xl">🏢</div>
+                  <div>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Éditeur(s)</p>
+                    <p className="text-lg font-semibold">{game.publishers.join(', ')}</p>
+                  </div>
+                </div>
               )}
             </div>
             <p className="text-base text-gray-600 dark:text-gray-400">
@@ -163,43 +213,50 @@ const GameDetails = () => {
               )}
             </div>
 
-            {/* Formulaire de commentaire */}
-            <form onSubmit={handleCommentSubmit} className="space-y-4">
-              <textarea
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
-                placeholder="Écris ton commentaire..."
-                className="w-full p-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"
-                rows={3}
-                required
-              />
-              <div className="flex items-center gap-4">
-                <label className="font-medium">Note :</label>
-                <select
-                  value={rating}
-                  onChange={(e) => setRating(parseInt(e.target.value))}
-                  className="p-2 rounded border bg-white dark:bg-gray-800"
-                >
-                  <option value={0}>--</option>
-                  {[1, 2, 3, 4, 5].map((r) => (
-                    <option key={r} value={r}>
-                      {r}
-                    </option>
-                  ))}
-                </select>
-                <button
-                  type="submit"
-                  disabled={rating === 0 || comment.trim() === ''}
-                  className={`ml-auto px-4 py-2 rounded-xl text-white ${
-                    rating === 0 || comment.trim() === ''
-                      ? 'bg-gray-400 cursor-not-allowed'
-                      : 'bg-indigo-600 hover:bg-indigo-700'
-                  }`}
-                >
-                  Envoyer
-                </button>
-              </div>
-            </form>
+            {/* Formulaire de commentaire : affiché uniquement si user pas déjà commenté */}
+            {!userHasReviewed && (
+              <form onSubmit={handleCommentSubmit} className="space-y-4">
+                <textarea
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                  placeholder="Écris ton commentaire..."
+                  className="w-full p-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"
+                  rows={3}
+                  required
+                />
+                <div className="flex items-center gap-4">
+                  <label className="font-medium">Note :</label>
+                  <select
+                    value={rating}
+                    onChange={(e) => setRating(parseInt(e.target.value))}
+                    className="p-2 rounded border bg-white dark:bg-gray-800"
+                  >
+                    <option value={0}>--</option>
+                    {[1, 2, 3, 4, 5].map((r) => (
+                      <option key={r} value={r}>
+                        {r}
+                      </option>
+                    ))}
+                  </select>
+                  <button
+                    type="submit"
+                    disabled={rating === 0 || comment.trim() === ''}
+                    className={`ml-auto px-4 py-2 rounded-xl text-white ${
+                      rating === 0 || comment.trim() === ''
+                        ? 'bg-gray-400 cursor-not-allowed'
+                        : 'bg-indigo-600 hover:bg-indigo-700'
+                    }`}
+                  >
+                    Envoyer
+                  </button>
+                </div>
+              </form>
+            )}
+
+            {/* Si utilisateur a déjà posté */}
+            {userHasReviewed && (
+              <p className="text-green-600 font-medium">Vous avez déjà posté un commentaire pour ce jeu.</p>
+            )}
           </div>
         </div>
       </div>
