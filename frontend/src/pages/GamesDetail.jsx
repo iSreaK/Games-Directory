@@ -29,7 +29,7 @@ const GameDetails = () => {
   const [rating, setRating] = useState(0);
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/review/allgames/${id}/`)
+    fetch(`http://127.0.0.1:8000/games/${id}/`)
       .then(res => res.json())
       .then(data => setGame(data))
       .catch(err => console.error('Erreur chargement jeu :', err));
