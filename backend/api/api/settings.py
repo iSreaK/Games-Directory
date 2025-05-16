@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'games',
     'reviews',
-    'users'
+    'users',
+    'quizzes'
 ]
 
 MIDDLEWARE = [
