@@ -4,9 +4,11 @@ from reviews.models import Reviews
 from reviews.serializers import OnlyReviewsSerializer
 
 class UserSerializer(serializers.ModelSerializer):
+    reviews = OnlyReviewsSerializer(many=True, read_only=True)
+
     class Meta(object):
         model = User
-        fields = ('id', 'username', 'email', 'password')
+        fields = ('id', 'username', 'email', 'password', 'reviews')
 
         extra_kwargs = {
             'password': {'write_only':True}
