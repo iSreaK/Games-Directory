@@ -4,6 +4,8 @@ import Navbar from './components/Navbar';
 import AuthPage from './pages/AuthPage';
 import GamesPage from './pages/GamesPage';
 import GamesDetail from './pages/GamesDetail';
+import ProfilePage from './pages/ProfilePage';
+import RedirectProfile from './components/RedirectProfile';
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
             <Route path="/" element={<GamesPage />} />
             <Route path="/login" element={<AuthPage />} />
             <Route path="/games/:id" element={<GamesDetail />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/profile/:id" element={<ProfilePage />} />
           </Routes>
         </div>
       </Router>

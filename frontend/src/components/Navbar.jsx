@@ -6,17 +6,12 @@ const Navbar = () => {
   const token = localStorage.getItem('token');
 
   const handleAuthClick = () => {
-    if (token) {
-      navigate('/profile');
-    } else {
-      navigate('/auth');
-    }
+    navigate(token ? '/profile' : '/auth');
   };
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 bg-white dark:bg-gray-800 shadow px-4 sm:px-6 md:px-12 xl:px-20 py-8
-       flex justify-between items-center z-50"
+      className="fixed top-0 left-0 right-0 bg-white dark:bg-gray-800 shadow px-4 sm:px-6 md:px-12 xl:px-20 py-4 flex justify-between items-center z-50"
       style={{ height: '60px' }}
     >
       {/* Logo */}
@@ -39,7 +34,7 @@ const Navbar = () => {
         <button
           onClick={handleAuthClick}
           className="flex items-center gap-1 text-gray-800 dark:text-gray-100 hover:text-indigo-500 transition"
-          title={token ? 'Profil' : 'Connexion / Inscription'}
+          title={token ? 'Mon profil' : 'Connexion / Inscription'}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
